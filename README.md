@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Calculadora interactiva
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Preparar el proyecto
 
-In the project directory, you can run:
+se elimina
+- setupTest
+- reportWebVitals.js
+- App.test.js
+- logo.svg
+- Vaciar los componentes que estan dentro de App.js, solo dejar <className="App">. Eliminar importacion de logo.svg
+- vaciar declaraciones de App.css
+- Vaciar en index.js la importación de reportWebVitals y los comentarios
 
-### `npm start`
+### `Comandos`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Para crear el proyecto
+- npm create-react-app nombreProyecto
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para arrrancar el proyecto
+- npm start
 
-### `npm test`
+### `Importar imagenes`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Crear carpeta
+- dentro de src, crear carpeta de imagenes
 
-### `npm run build`
+Importar imagen local
+- dentro del componente se debe añadir con el tag img e importar indicando el nombre y ubicacion ej: import logo from "./imagenes/nombreimagen.tipo". Para hacer uso de la imagen, se debe declarar dentro de src={logo}, el mismo nombre que utilizamos para la importación
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## `Hoja de estilos`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Cuando se van creando componentes, es de buena practica crear una carpeta dentro de src para las hojas de estilos, esto con el fin de mantener el orden si cada componente va a tener una. La hoja de estilo debe tener el mismo nombre que el componente pero con su tipo .css
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `arbol componentes`
 
-### `npm run eject`
+Index.js es el componente principal, es de ahí que se envian todos los componentes a la vista html.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Para los componentes se debe crear una carpeta dentro de src
+- componentes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Agenda
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Las llaves {} nos permiten insertar codigo de javascript dentro de los JSX
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- {props.children}, son los hijos o todo lo que este dentro de un div. En el ejercicio cuando se declara el componente Boton, se declara el numero 1, 1 vendría siendo el children del componente Boton.
 
-## Learn More
+- ``, para crear plantillas literales
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- isNaN(), Not-A-Number (no es un número) sirve para verificar si el valor ingresado dentro del metodo es o no un numero, si se ingresa isNaN(2) el resultado será "false", porque si es un número.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `return isNaN(valor) && (valor != '.') && (valor != '=');`, dentro de un return se puede ingresar estas condiciones con &&, destacar que van con parentesis para mejor lectura
 
-### Code Splitting
+- .trimEnd(), permite eliminar espacios al final de una cadena
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- declarar componentes con funcion flecha, se utiliza una variable const, se utiliza para componentes simples. Ej: 
+`const Pantalla = ({ input }) => (
+  <div className='input'>
+    {input}
+  </div>
+);`
 
-### Analyzing the Bundle Size
+export default Pantalla;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- cuando se agregue un componente hijo, si no se va a agregar un valor, no es necesario declarar el componentes con etiqueta de apertura y de cierre. Ej: <Pantalla/>
 
-### Making a Progressive Web App
+- recordar exportar el componente y en el padre importarlo
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- si no se agrega el return en la funcion del componente, no arrojará error, pero no se podra visualizar el componente aunque se haya exportado
 
-### Advanced Configuration
+- cuando se define un componente funcional con la variable const, nos aseguramos que no pueda ser declarado otro componente con el mismo nombre
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- `onClick={props.manejarClic(props.children)}>, esto es una llamada a una función, no retornara el resultado que buscamos.`
 
-### Deployment
+- `onClick={() => props.manejarClic(props.children)}>, esto es una ejecucion de la función y si realizará la operación. Aqui se esta usando una funcion anonima, una funcion nueva`
+al agregar ()=>, le dice a react o js que queremos que se llame a la función,  onClick es una función que espera llamar a otra función, por eso se agrega "() =>" se esta haciendo  min 5:01:00
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
+- Las cadenas de caracteres o string vacias '' son FALSAS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Las cadenas de carateres o string con letra son VERDADERAS
+
+- Se uso la librería mathJs, se instala desde la carpeta principal del proyecto con el siguiente codigo => npm mathjs install
+
+- npm => node package manager
+
+- React-icons, se importa desde https://react-icons.github.io/react-icons/. Se instala con el node package manager(npm).
+
+- Fragmentos, se usa el <>, es para no agregar un div al html, ya que este tiene margin, border, paddin que pueden afectar el diseño de la página
+
+- Un componente no puede tener dos div principales, solo puede tener uno
+
+-  map, es un metodo que pasara un argumento para una funcion y va a realizar lo que nosotros queremos
+
+- cada tarea se va a representar como un objeto en el arreglo(array).
